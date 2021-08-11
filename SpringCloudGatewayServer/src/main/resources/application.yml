@@ -1,0 +1,19 @@
+server:
+  port: 9091
+ 
+spring:
+  cloud:
+    gateway:
+      routes:
+        #Route Mapping
+      - id: Company               #RouteIdentifier
+        uri: https://localhost:8284/         #Respective microservice URL which needs to be mapped
+         #Request Context Path Mapping
+        predicates:
+        - Path=/api/v1.0/market/company/**          
+        
+        #Route Mapping
+      - id: Stock
+        uri: http://localhost:8285/
+        predicates:
+        - Path=/api/v1.0/market/stock/**
